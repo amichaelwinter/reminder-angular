@@ -1,0 +1,54 @@
+<table class="table">
+  <thead class="h">
+    <tr class="h">
+      <th class="h">Title</th>
+      <th class="h">Description</th>
+      <th class="h">Date</th>
+      <th class="h">Status</th>
+      <th class="h">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{reminderList}}
+    <tr class="todo" (dblclick)="editReminder(reminder)" *ngFor="let reminder of reminderList">
+
+
+      <td>{{reminder.title}}</td>
+        <td>{{reminder.description}}</td>
+        <td>{{reminder.date | date}}</td>
+        <td>{{reminder.status}}</td>
+
+      <td>
+        <button class="btn btn-success" (click)="doneReminder(reminder)">
+          <i  class="fa fa-check"></i>
+        </button>
+        <button class="btn btn-primary" (click)="editReminder(reminder)">
+            <i  class="fa fa-pencil"></i>
+          </button>
+        <button class="btn btn-danger" (click)="deleteReminder(reminder)">
+            <i  class="fa fa-trash"></i>
+          </button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+<form>
+  <div class="form-row">
+
+    <div class="col-md-5">
+      <input type="text" name="title" id="title" [(ngModel)]="newRminder.title" placeholder="Title" class="form-control">
+    </div>
+    <div class="col-md-5">
+      <input name="description" id="description" [(ngModel)]="newReminder.description" placeholder="Description" class="form-control"
+        id="description">
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+    </div>
+  </div>
+</form>
