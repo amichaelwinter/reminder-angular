@@ -49,9 +49,12 @@ export class ReminderService {
 
   deleteReminder(id:string):any{
     //Delete the object by the id
+    console.log("Reminder Service Deleting");
     let deleteUrl = `${this.reminderUrl}/${id}`
     return this.http.delete(deleteUrl)
     .map(res  => {
+      console.log("Reminder Service Delete Response");
+      console.log(res);
       return res;
     })
   }

@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   //An Empty list for the visible todo list
   reminderList: Reminder[];
+  editReminderList: Reminder[] = [];
 
 
   ngOnInit(): void {
@@ -35,4 +36,62 @@ export class AppComponent implements OnInit {
         console.log(reminders)
       })
   }
+
+  create() {
+    this.reminderService.createReminder(this.newReminder)
+      .subscribe((res) => {
+        this.reminderList.push(res.data)
+        this.newReminder = new Reminder()
+      })
+  }
+
+  editReminder(reminder: Reminder) {
+
+    console.log(reminder)
+
+    if(this.reminderList.includes(reminder)){
+
+      if(!this.editReminderList.includes(reminder)){
+
+        this.editReminderList.push(reminder)
+      }else{
+
+        this.editReminderList.splice(this.editReminderList.indexOf(reminder), 1)
+
+        this.reminderService.editReminder(reminder).subscribe(res => {
+          console.log('Update Succesful')
+        }, err => {
+          this.editReminder(reminder)
+          console.error('Update Unsuccesful')
+        })
+      }
+    }
+  }
+
+  doneReminder(reminder:Reminder){
+      reminder.status = 'Done'
+      this.reminderService.editReminder(reminder).subscribe(res => {
+        console.log('Update Succesful')
+      }, err => {
+        this.editReminder(reminder)
+        console.error('Update Unsuccesful')
+      })
+    }
+
+    submitReminder(event, reminder:Reminder){
+        if(event.keyCode ==13){
+          this.editReminder(reminder)
+        }
+      }
+
+    deleteReminder(reminder: Reminder) {
+      
+      this.reminderService.deleteReminder(reminder._id).subscribe(res => {
+
+        console.log(res);
+
+        this.reminderList.splice(this.reminderList.indexOf(reminder), 1);
+      })
+    }
+
 }
