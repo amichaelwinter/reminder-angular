@@ -11,7 +11,6 @@
             <th class="h">Description</th>
             <th class="h">Date</th>
             <th class="h">End Date</th>
-            <th class="h">Status</th>
             <th class="h">Options</th>
           </tr>
         </thead>
@@ -23,7 +22,6 @@
               <td>{{reminder.description}}</td>
               <td>{{reminder.date | date}}</td>
               <td>{{reminder.endDate | date}}</td>
-              <td>{{reminder.status}}</td>
             </ng-container>
 
             <ng-template #editRM>
@@ -31,15 +29,10 @@
                 <td><input type="text" name="description" id="description" (keypress)="submitReminder($event, reminder)" [(ngModel)]="reminder.description" placeholder="Description"
                     class="form-control"></td>
                 <td>{{reminder.date | date}}</td>
-                <td>
-                  <input type="text" name="status" id="status" (keypress)="submitReminder($event, reminder)" [(ngModel)]="reminder.status" placeholder="Status" class="form-control">
-                </td>
+                <td>{{reminder.endDate | date}}</td>
             </ng-template>
 
             <td class="o">
-              <button class="btn btn-success" (click)="doneReminder(reminder)">
-                <i  class="fa fa-check"></i>
-              </button>
               <button class="btn btn-primary" (click)="editReminder(reminder)">
                   <i  class="fa fa-pencil"></i>
                 </button>

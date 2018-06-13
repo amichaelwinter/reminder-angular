@@ -4,14 +4,11 @@ class Reminder {
     description: string;
     date: Date;
     endDate: Date;
-    status: string;
 
     constructor() {
         this.title = ""
         this.description = ""
         this.date = new Date()
-        this.endDate = ""
-        this.status = ""
     }
 
 }
