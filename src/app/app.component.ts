@@ -25,19 +25,22 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-      console.log("------On It")
-
     //At component initialization the
     this.reminderService.getReminders()
       .subscribe(reminders => {
         //assign the todolist property to the proper http response
         this.reminderList = reminders
-        console.log("------On It")
         console.log(reminders)
       })
   }
 
   create() {
+
+    // Set the end date to 2 weeks following the today's date
+    var currentDate = new Date()
+    this.newReminder.endDate = new Date();
+    this.newReminder.endDate.setDate(currentDate.getDate() + 14)
+
     this.reminderService.createReminder(this.newReminder)
       .subscribe((res) => {
         this.reminderList.push(res.data)
@@ -85,7 +88,7 @@ export class AppComponent implements OnInit {
       }
 
     deleteReminder(reminder: Reminder) {
-      
+
       this.reminderService.deleteReminder(reminder._id).subscribe(res => {
 
         console.log(res);
