@@ -3,7 +3,7 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
 
-    <div class="todos" *ngIf="reminderList">
+    <div class="reminders" *ngIf="reminderList">
       <table class="table">
         <thead class="h">
           <tr class="h">
@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="todo" (dblclick)="editReminder(reminder)" *ngFor="let reminder of reminderList">
+          <tr class="remidner" (dblclick)="editReminder(reminder)" *ngFor="let reminder of reminderList">
 
             <ng-container *ngIf="!editReminderList.includes(reminder); else editRM">
               <td>{{reminder.title}}</td>

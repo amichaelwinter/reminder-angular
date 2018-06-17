@@ -11,14 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   constructor(
-    //Private todoservice will be injected into the component by Angular Dependency Injector
+    //Private reminder service will be injected into the component by Angular Dependency Injector
     private reminderService: ReminderService
   ) { }
 
-  //Declaring the new todo Object and initilizing it
+  //Declaring the new reminder Object and initilizing it
   public newReminder: Reminder = new Reminder()
 
-  //An Empty list for the visible todo list
+  //An Empty list for the visible reminder list
   reminderList: Reminder[];
   editReminderList: Reminder[] = [];
 
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     //At component initialization the
     this.reminderService.getReminders()
       .subscribe(reminders => {
-        //assign the todolist property to the proper http response
+        //assign the remidnerList property to the proper http response
         this.reminderList = reminders
         console.log(reminders)
       })
@@ -71,15 +71,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  doneReminder(reminder:Reminder){
-      reminder.status = 'Done'
-      this.reminderService.editReminder(reminder).subscribe(res => {
-        console.log('Update Succesful')
-      }, err => {
-        this.editReminder(reminder)
-        console.error('Update Unsuccesful')
-      })
-    }
+
 
     submitReminder(event, reminder:Reminder){
         if(event.keyCode ==13){

@@ -6,7 +6,6 @@ import {Response} from '@angular/http';
 import { Injectable } from '@angular/core';
 
 //RxJS operator for mapping the observable
-//TODO - Map using relatives
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -20,13 +19,13 @@ export class ReminderService {
   ) { }
 
 
-  //Create todo, takes a ToDo Object
+  //Create remidner, takes a Remidner Object
   createReminder(reminder: Reminder): Observable<any>{
     //returns the observable of http post request
     return this.http.post(`${this.reminderUrl}`, reminder);
   }
 
-  //Read todo, takes no arguments
+  //Read reminder, takes no arguments
   getReminders(): Observable<Reminder[]>{
 
     console.log("Service Get Reminders called")
@@ -40,7 +39,7 @@ export class ReminderService {
       return res["data"].docs as Reminder[];
     })
   }
-  //Update todo, takes a ToDo Object as parameter
+  //Update Remidner, takes a Reminder Object as parameter
   editReminder(reminder:Reminder){
     let editUrl = `${this.reminderUrl}`
     //returns the observable of http put request
