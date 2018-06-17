@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
   create() {
 
-    // Set the end date to 2 weeks following the today's date
+    // Set the end date to 2 weeks following the today's date ()
     var currentDate = new Date()
     this.newReminder.endDate = new Date();
     this.newReminder.endDate.setDate(currentDate.getDate() + 14)
